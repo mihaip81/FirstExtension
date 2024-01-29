@@ -23,7 +23,7 @@ function addLoginListener() {
       chrome.runtime.sendMessage(
         { action: "saveToken", token: tokenString },
         function (response) {
-          console.log("Background script response:", response);
+          console.log("Popup script response:", response);
         }
       );
   
@@ -110,4 +110,4 @@ function verifyUserToken() {
     }
 })}
 
-verifyUserToken()
+verifyUserToken();
