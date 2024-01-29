@@ -60,4 +60,5 @@ function isTokenValid(token) {
   
   verifyUserToken();
   setInterval(verifyUserToken, 60000); // Check every 1 minute
+
   
