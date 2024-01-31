@@ -9,6 +9,7 @@ function isTokenValid(token) {
 
 // Function to verify the user token
 function verifyUserToken() {
+
   // Retrieve the token from local storage
   chrome.storage.local.get(["token"]).then((result) => {
     const tokenString = result.token;
@@ -18,7 +19,6 @@ function verifyUserToken() {
       // Convert the token string back to an object
       const tokenObject = JSON.parse(tokenString);
 
-      // Use the token in your token verification logic
       if (isTokenValid(tokenObject)) {
         // If token is valid, do nothing
         return;
@@ -26,7 +26,7 @@ function verifyUserToken() {
     }
 
     // If token is not found or not valid, make user login again
-    chrome.storage.local.remove("token");
+    chrome.storage.local.remove("token"); //TODO: refactor based on AC
   });
 }
 
@@ -46,4 +46,4 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 verifyUserToken();
-setInterval(verifyUserToken, 10000); // Check every 1 minute
+setInterval(verifyUserToken, 60000); // Check every 1 minute
